@@ -36,7 +36,7 @@ map("n", "<C-Down>", "<C-w>-")
 
 -- Telescope
 map("n", "<leader>pf", "<CMD>Telescope find_files<CR>", { desc = "Fuzzy find files in cwd" })
-map("n", "<C-p>pf",    "<CMD>Telescope git_files<CR>", { desc = "Fuzzy find files in cwd" })
+map("n", "<C-p>pf", "<CMD>Telescope git_files<CR>", { desc = "Fuzzy find files in cwd" })
 map("n", "<leader>ps", "<CMD>Telescope live_grep<CR>", { desc = "Find string in cwd" })
 map("n", "<leader>fb", "<CMD>Telescope buffers<CR>", { desc = "Fuzzy find opened files" })
 map("n", "<leader>fs", "<CMD>Telescope git_status<CR>", { desc = "Show git file diffs" })
@@ -64,7 +64,7 @@ vim.diagnostic.config({
 })
 
 -- Remap escape and disable Q
-map("n", "<C-c>", "<Esc>")
+map("i", "<C-c>", "<Esc>")
 map("n", "Q", "<nop>")
 
 -- Navigation with centering
@@ -101,4 +101,3 @@ map("n", "<leader><leader>", function() vim.cmd("so") end)
 map("n", "<leader>cpp", [[:let @+ = expand("%")<RR>]])
 
 map("n", "<leader>gb", ":Git blame<CR>")
-end)
