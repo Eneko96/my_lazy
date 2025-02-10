@@ -36,6 +36,7 @@ map("n", "<C-Down>", "<C-w>-")
 
 -- Telescope
 map("n", "<leader>pf", "<CMD>Telescope find_files<CR>", { desc = "Fuzzy find files in cwd" })
+map("n", "<C-p>pf",    "<CMD>Telescope git_files<CR>", { desc = "Fuzzy find files in cwd" })
 map("n", "<leader>ps", "<CMD>Telescope live_grep<CR>", { desc = "Find string in cwd" })
 map("n", "<leader>fb", "<CMD>Telescope buffers<CR>", { desc = "Fuzzy find opened files" })
 map("n", "<leader>fs", "<CMD>Telescope git_status<CR>", { desc = "Show git file diffs" })
@@ -56,6 +57,7 @@ map("n", "<leader>vca", function() vim.lsp.buf.code_action() end)
 map("n", "<leader>vrr", function() vim.lsp.buf.references() end)
 map("n", "<leader>vrn", function() vim.lsp.buf.rename() end)
 map("n", "<C-h>", function() vim.lsp.buf.signature_help() end)
+map("n", "<leader>f", vim.lsp.buf.format)
 
 vim.diagnostic.config({
   virtual_text = true
@@ -69,7 +71,7 @@ map("n", "Q", "<nop>")
 map("n", "<C-k>", "<cmd>cnext<CR>zz")
 map("n", "<C-j>", "<cmd>cprev<CR>zz")
 map("n", "<leader>k", "<cmd>lnext<CR>zz")
-map("n", "<leader>k", "<cmd>lprev<CR>zz")
+map("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- Search and replace
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
@@ -97,3 +99,6 @@ map("n", "<leader><leader>", function() vim.cmd("so") end)
 
 -- Copy path
 map("n", "<leader>cpp", [[:let @+ = expand("%")<RR>]])
+
+map("n", "<leader>gb", ":Git blame<CR>")
+end)
