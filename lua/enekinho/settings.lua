@@ -39,3 +39,5 @@ o.termguicolors = true
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
 o.foldlevel = 99 -- do not fold by default
+
+o.swapfile = false

@@ -11,13 +11,29 @@ return {
 
     local protocol = require("vim.lsp.protocol")
 
+    local disable_formatting_for = {
+      tsserver = true,
+      eslint = true,
+      jsonls = true,
+      html = true,
+      cssls = true,
+      tailwindcss = true,
+    }
+
     local on_attach = function(client, bufnr)
+      -- print("LSP started." .. client.name)
       -- format on save
+      if disable_formatting_for[client.name] then
+        -- print("Disabling formatting for " .. client.name)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+      end
       if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_create_autocmd("BufWritePre", {
           group = vim.api.nvim_create_augroup("Format", { clear = true }),
           buffer = bufnr,
           callback = function()
+            -- print("Being formatted by " .. client.name)
             vim.lsp.buf.format()
           end,
         })
@@ -89,9 +105,10 @@ return {
       ["eslint"] = function()
         nvim_lsp["eslint"].setup({
           on_attach = function(client)
-            if client.resolved_capabilities then
-              client.resolved_capabilities.document_formatting = true
-            end
+            -- if client.resolved_capabilities then
+              client.server_capabilities.documentFormattingProvider = true
+              -- client.resolved_capabilities.document_formatting = true
+            -- end
           end,
           capabilities = capabilities
         })
